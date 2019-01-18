@@ -1,0 +1,421 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="NCGDSasp.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NGCDS</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/images/favicon-16x16.png" sizes="16x16" />
+
+       <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+     
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../plugins/datatables/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/datatables/extensions/Select/css/select.bootstrap.css">
+    <link rel="stylesheet" href="../dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="dist/css/patternfly-additions.min.css" >-->
+
+    <script type="text/javascript">
+			function isNumberKey(evt){
+				var charCode = (evt.which) ? evt.which : event.keyCode
+				if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+					return false;
+				return true;
+			}
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <form id="form1" runat="server">
+    <div>
+         <div class="wrapper">
+      <header class="main-header">
+    <nav class="navbar navbar-static-top" style="width:100%; background-color: #0000A0">
+        <div class="row">
+          <div class="col-xs-6">
+            <h3 class="" style="position: relative;color: #cfcfcf !important; margin-left: 7% !important;  font-weight: bold; text-transform:UPPERCASE;">
+              &nbsp; &nbsp; &nbsp; Bureau of The Treasury
+            </h3>
+          </div>
+        <div class="col-xs-4" align="right">
+          <h5 style="color: #fff;">Welcome <?php echo @$_SESSION['sess_username']; ?>! &nbsp; &nbsp;</h5>
+          <h5 style="color: #fff; text-transform:UPPERCASE;"><?php echo @$_SESSION['agency']; ?> &nbsp; &nbsp;</h5>
+        </div>
+        </div>    
+        </nav>
+</header>
+<header class="main-header">
+    <nav class="navbar navbar-static-top" style="width:100%; background-color: #EDDA74">
+      <span style="float:left;margin-top:-30px;margin-right:5px;margin-bottom:4px">
+        <img src="../dist/img/btr-logo.png" alt="New Government Accounting System" style="max-height: 70px; margin-left: 10%;" />
+      </span>
+      <h4><b style="color: #cfcfcf !important; margin-left: 1%; font-weight: bold;">&nbsp; National Government Collection Reporting System</b></h4>
+    </nav>
+</header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</l>i
+                    <li class="treeview">
+                        <a href="index.php">
+                            <i class="fa fa-home"></i> <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-cog"></i> <span>Administration</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> User Management
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="../UserManagement/CreateUser.aspx"><i class="fa fa-circle-o"></i> Create User</a></li>
+                                    <li><a href="../UserManagement/UserApproval.aspx"><i class="fa fa-circle-o"></i> Approve User</a></li>
+                                    <li><a href="../UserManagement/UserList.aspx"><i class="fa fa-circle-o"></i> User List</a></li>
+                                    <li><a href=""><i class="fa fa-circle-o"></i> Role Maintenance</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Bank
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                
+                                    <li><a href="../BankManagement/CreateBank.aspx"><i class="fa fa-circle-o"></i> Create Bank</a></li>
+                                    <li><a href="../BankManagement/BankList.aspx"><i class="fa fa-circle-o"></i> Bank List</a></li>
+                                    <li><a href="../BankManagement/BankApproval.aspx"><i class="fa fa-circle-o"></i> Bank Approval</a></li>
+                                    <li><a href="../BankManagement/CreateBranch.aspx"><i class="fa fa-circle-o"></i> Create Bank Branch</a></li>
+                                    <li><a href="../BankManagement/BranchList.aspx"><i class="fa fa-circle-o"></i> Bank Branch List</a></li>
+                                    <li><a href="../BankManagement/BranchApproval.aspx"><i class="fa fa-circle-o"></i> Bank Branch Approval</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Agency
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="../AgencyManagement/CreateAgency.aspx"><i class="fa fa-circle-o"></i> Create Agency</a></li>
+                                    <li><a href="../AgencyManagement/AgencyList.aspx"><i class="fa fa-circle-o"></i> Agency List</a></li>
+                                    <li><a href="../AgencyManagement/AgencyApproval.aspx"><i class="fa fa-circle-o"></i> Approve Agency</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Revenue Code
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="../RevenueCodeManagement/CreateRevenueCode.aspx"><i class="fa fa-circle-o"></i> Create Revenue Code</a></li>
+                                    <li><a href="../RevenueCodeManagement/RevenueCodeList.aspx"><i class="fa fa-circle-o"></i>Revenue Code List</a></li>
+                                    <li><a href="../RevenueCodeManagement/RevenueCodeApproval.aspx"><i class="fa fa-circle-o"></i> Approve Revenue Code</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Fund Source
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="../FundSourceManagement/CreateFundSource.aspx"><i class="fa fa-circle-o"></i> Create Fund Source</a></li>
+                                    <li><a href="../FundSourceManagement/FundSourceList.aspx"><i class="fa fa-circle-o"></i>Fund Source List</a></li>
+                                    <li><a href="../FundSourceManagement/FundSourceApproval.aspx"><i class="fa fa-circle-o"></i> Approve Fund Source</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-money"></i> <span>Collection</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="../Collection/CollectionList.aspx">
+                                    <i class="fa fa-circle-o"></i> OR List
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-file-text-o"></i> <span>LDC</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="../LDC/CreateLDC.aspx">
+                                    <i class="fa fa-circle-o"></i> Create LDC
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../LDC/LDCList.aspx?Status=Approval">
+                                    <i class="fa fa-circle-o"></i> Approve LDC
+                                </a>
+                            </li>
+                            <li>
+                                 <a href="../LDC/LDCList.aspx?Status=Confirmation">
+                                    <i class="fa fa-circle-o"></i> Confirm LDC
+                                </a>
+                            </li>
+                               <li>
+                                 <a href="../LDC/LDCList.aspx?Status=Draft">
+                                    <i class="fa fa-circle-o"></i> Draft LDC
+                                </a>
+                            </li>
+                               <li>
+                                 <a href="../LDC/LDCList.aspx?Status=Rejected">
+                                    <i class="fa fa-circle-o"></i> Rejected LDC
+                                </a>
+                            </li>
+                            <li>
+                                   <a href="../LDC/LDCList.aspx">
+                                    <i class="fa fa-circle-o"></i> LDC List
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-address-card-o"></i> <span>Certification</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="../Certification/CreateCertificate.aspx">
+                                    <i class="fa fa-circle-o"></i> Validated Numbers
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="manage-fund-request-list-agency.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (Officer)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-agency-supervisor.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (Supervisor)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-btr-receiving.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (Receiving)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-btr-section-chief.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (S.C.)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-btr-asst-div-chief.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (A.D.C)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-btr-division-chief.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (D.C.)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-btr-director.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (Director)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="manage-fund-request-list-btr-dtop.php">
+                                    <i class="fa fa-circle-o"></i> Fund Request List (DTOP)
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-check-square-o"></i> <span>Endorsement</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="../Endorsement/ReportValidation.aspx">
+                                    <i class="fa fa-circle-o"></i> Reports Validation
+                                </a>
+                            </li>
+                            <!--
+                            <li>
+                              <a href="manage-discrepancy-details.php"><i class="fa fa-circle-o"></i> Discrepancy Details
+                              </a>
+                            </li>
+                            -->
+                            <li>
+                                <a href="../Endorsement/LDCList.aspx?status=EndorsementApproval">
+                                    <i class="fa fa-circle-o"></i> Endorsement for Approval
+                                </a>
+                            </li>
+                            <li>
+                                  <a href="../Endorsement/LDCList.aspx">
+                                    <i class="fa fa-circle-o"></i> Endorsement List
+                                </a>
+                            </li>
+                            <li>
+                                  <a href="../Endorsement/LDCList.aspx?status=EndorsedToRO">
+                                    <i class="fa fa-circle-o"></i> RO Endorsement List
+                                </a>
+                            </li>
+                            <li>
+                                   <a href="../Endorsement/LDCList.aspx?status=EndorsedToDOPO">
+                                    <i class="fa fa-circle-o"></i> DO/PO Endorsement List
+                                </a>
+                            </li>
+                            <li>
+                                   <a href="../Endorsement/LDCList.aspx?status=EndorsedToAgency">>
+                                    <i class="fa fa-circle-o"></i> Agency Endorsement List
+                                </a>
+                            </li>
+                            <li>
+                                   <a href="../Endorsement/LDCList.aspx?status=AdjustmentConfirmation">
+                                    <i class="fa fa-circle-o"></i> Adjustment Confirmation
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+          <a href="#">
+            <i class="fa fa-upload"></i> <span>Bank Reports Upload</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="../BankReportUpload/AABReportUpload.aspx"><i class="fa fa-circle-o"></i> AAB Upload
+              </a>
+            </li>
+            <li>
+              <a href="../BankReportUpload/AGDBReportUpload.aspx"><i class="fa fa-circle-o"></i> AGDB Upload
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="authorize-agency-banks-adjustment.php">
+            <i class="fa fa-exchange"></i> <span>AAB Adjustments</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="authorize-government-depository-bank-adjustment.php">
+            <i class="fa fa-exchange"></i> <span>AGDB Adjustments</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-file-o"></i> <span>ATAP</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+             
+            <li>
+              <a href="../ATAP/CreateATAP.aspx"><i class="fa fa-circle-o"></i> Create ATAP
+              </a>
+            </li>
+            <li>
+              <a href="../ATAP/ATAPConfirmation.aspx"><i class="fa fa-circle-o"></i> ATAP Confirmation
+              </a>
+            </li>
+            <li>
+              <a href="create-atap-confirmation.php"><i class="fa fa-circle-o"></i> Create ATAP Confirmation
+              </a>
+            </li>
+            <!--
+            <li>
+              <a href="#"><i class="fa fa-circle-o"></i> Bond Computation
+              </a>
+            </li>
+            -->
+            <li>
+              <a href="create-bond-cancellation.php"><i class="fa fa-circle-o"></i> Cancellation of Bond
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="manage-reports.php">
+            <i class="fa fa-clipboard"></i> <span>Reports Generation</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="logout.php">
+            <i class="fa fa-sign-out"></i> <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <div class="container-fluid">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+               </div>
+        </div>
+    </div>
+    </form>
+</body>
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="../dist/js/app.min.js"></script>
+<script src="../Scripts/bootstrap.min.js"></script>
+<script src="../Scripts/jquery.validate.min.js"></script>
+<script src="../Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="../Scripts/notify.min.js"></script>
+   
+
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="../dist/js/app.min.js"></script>
+</html>
